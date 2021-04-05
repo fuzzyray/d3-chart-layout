@@ -10,7 +10,7 @@ class D3ChartLayout {
   /*
    Defaults to a width of 1000px with an aspect ratio of 16:9
    Use width and/or aspectRatio to dynamically set height
-   Use height and width to just set the size of the chart
+   Use height and width to explicitly set the size of the chart
    Margins default to 10%, either pass an margins object or call setMargins to adjust with a percentage
    Call setLabels to change the labels from default or pass a full labels object
    */
@@ -150,11 +150,10 @@ class D3ChartLayout {
     this.createLabels(this.labels)
   }
 
-  appendSVGGroup(name, area, id) {
-    id = (id === undefined) ? name : id;
+  appendSVGGroup(name, area) {
     this.svgGroups[name] = this.svg
       .append('g')
-      .attr('id', id)
+      .attr('id', name)
       .attr('transform', `translate(${area.X}, ${area.Y})`);
   }
 
