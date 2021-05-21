@@ -8,19 +8,20 @@
 
 class D3ChartLayout {
   /*
-   Defaults to a width of 1000px with an aspect ratio of 16:9
+   Defaults to a width of 960px with an aspect ratio of 16:9
    Use width and/or aspectRatio to dynamically set height
    Use height and width to explicitly set the size of the chart
    Margins default to 10%, either pass an margins object or call setMargins to adjust with a percentage
    Call setLabels to change the labels from default or pass a full labels object
    */
+
   constructor(props = {}) {
     const aspectRatio = (props.hasOwnProperty('aspectRatio'))
       ? props.aspectRatio
       : 16 / 9;
     const width = (props.hasOwnProperty('width'))
       ? props.width
-      : 1000;
+      : 960;
     const height = (props.hasOwnProperty('height'))
       ? props.height
       : width / aspectRatio;
@@ -53,7 +54,17 @@ class D3ChartLayout {
     this.svgGroups = {};
   }
 
-  // Calculate our areas for rendering elements
+  /* Calculate our areas for rendering elements
+
+    Returns an area object of the form
+    {
+      height: value in px,
+      width: value in px,
+      X: starting x pixel,
+      Y: starting y pixel
+    }
+
+  */
   get plotArea() {
     return D3ChartLayout.calculateArea(this.height, this.width, 0, 0, this.margins);
   }
